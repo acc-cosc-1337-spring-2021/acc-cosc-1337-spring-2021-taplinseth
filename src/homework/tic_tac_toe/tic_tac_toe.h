@@ -27,6 +27,8 @@ private:
     void clear_board();
 
     string player;
+    
+    string winner;
 
     vector<string> pegs;
 
@@ -37,6 +39,4 @@ private:
     bool check_diagonal_win();
 
     void set_winner();
-
-    string winner;
 };

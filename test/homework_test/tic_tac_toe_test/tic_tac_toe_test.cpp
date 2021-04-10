@@ -27,7 +27,6 @@ TEST_CASE("Test game over if 9 slots are selected") {
 	REQUIRE(game.game_over() == false);
 	game.mark_board(8);
 	REQUIRE(game.game_over() == true);
-
 	REQUIRE(game.get_winner() == "C");
 }
 

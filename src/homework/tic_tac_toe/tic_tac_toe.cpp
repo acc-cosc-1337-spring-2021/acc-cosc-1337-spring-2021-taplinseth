@@ -3,7 +3,6 @@
 #include<iostream>
 using std::cout;
 
-
 bool TicTacToe::game_over() 
 {
     if (check_row_win() == true)
@@ -62,8 +61,6 @@ void TicTacToe::display_board() const
     cout<<"|"<<pegs[3]<<"|"<<pegs[4]<<"|"<<pegs[5]<<"|"<<"\n";
     cout<<"|"<<pegs[6]<<"|"<<pegs[7]<<"|"<<pegs[8]<<"|"<<"\n";
 }
-
-
 
 void TicTacToe::set_next_player()
 {
