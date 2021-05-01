@@ -170,64 +170,48 @@ TEST_CASE("Test win diagonally from bottom left"){
 }
 
 TEST_CASE("Simulate playing 3 or more games with X, O, and C as winners"){
-	TicTacToeManager manager;
+
+    TicTacToeManager manager;
+    int o_wins = 0;
+    int x_wins = 0;
+    int t_wins = 0;
 
 	unique_ptr<TicTacToe> game1 = make_unique<TicTacToe3>();
 	game1->start_game("X");
-	game1->mark_board(7);
-	REQUIRE(game1->game_over()== false);
-	game1->mark_board(6);
-	REQUIRE(game1->game_over()== false);
-	game1->mark_board(5);
-	REQUIRE(game1->game_over()== false);
+	game1->mark_board(1);
+	game1->mark_board(2);
+	game1->mark_board(4);
 	game1->mark_board(9);
-	REQUIRE(game1->game_over()== false);
-	game1->mark_board(3);
-	REQUIRE(game1->game_over()== true);
-	REQUIRE(game1->get_winner() == "X");
-	manager.save_game(game1);
+	game1->mark_board(7);
+    if(game1->game_over()){
+        manager.save_game(game1);
+    }
 
 	unique_ptr<TicTacToe> game2 = make_unique<TicTacToe3>();
 	game2->start_game("O");
 	game2->mark_board(1);
-	REQUIRE(game2->game_over()== false);
 	game2->mark_board(6);
-	REQUIRE(game2->game_over()== false);
 	game2->mark_board(5);
-	REQUIRE(game2->game_over()== false);
 	game2->mark_board(8);
-	REQUIRE(game2->game_over()== false);
 	game2->mark_board(9);
-	REQUIRE(game2->game_over()== true);
-	REQUIRE(game2->get_winner() == "O");
-	manager.save_game(game2);
-
+    if(game2->game_over()){
+        manager.save_game(game2);
+    }
 	unique_ptr<TicTacToe> game3 = make_unique<TicTacToe3>();
 	game3->start_game("X");	
 	game3->mark_board(1);
-	REQUIRE(game3->game_over() == false);
 	game3->mark_board(2);
-	REQUIRE(game3->game_over() == false);
 	game3->mark_board(3);
-	REQUIRE(game3->game_over() == false);
 	game3->mark_board(4);
-	REQUIRE(game3->game_over() == false);
 	game3->mark_board(5);
-	REQUIRE(game3->game_over() == false);
 	game3->mark_board(7);
-	REQUIRE(game3->game_over() == false);
 	game3->mark_board(6);
-	REQUIRE(game3->game_over() == false);
 	game3->mark_board(9);
-	REQUIRE(game3->game_over() == false);
 	game3->mark_board(8);
-	REQUIRE(game3->game_over() == true);
-	REQUIRE(game3->get_winner() == "C");
-	manager.save_game(game3);
+	if(game3->game_over()){
+	    manager.save_game(game3);
+	}
 
-	int o_wins = 0;
-	int x_wins = 0;
-	int t_wins = 0;
 	manager.get_winner_total(o_wins, x_wins, t_wins);
 	REQUIRE(o_wins == 1);
 	REQUIRE(x_wins == 1);

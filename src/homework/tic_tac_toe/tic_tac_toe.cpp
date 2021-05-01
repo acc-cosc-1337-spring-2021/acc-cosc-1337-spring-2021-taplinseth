@@ -3,7 +3,7 @@
 #include<iostream>
 using std::cout, std::cin;
 
-bool TicTacToe::game_over() 
+bool TicTacToe::game_over()
 {
     if (check_row_win() == true)
     {
@@ -16,7 +16,7 @@ bool TicTacToe::game_over()
         set_winner();
         return true;
     }
-    
+
     else if (check_diagonal_win() == true)
     {
         set_winner();
@@ -28,18 +28,17 @@ bool TicTacToe::game_over()
         winner = "C";
         return true;
     }
-
     else
     {
         return false;
     }
 }
 
-void TicTacToe::start_game(string first_player) 
+void TicTacToe::start_game(string first_player)
 {
     if (first_player == "X" || first_player == "O"){
         player = first_player;
-        clear_board();
+        this -> clear_board();
     }
 
 }
@@ -75,15 +74,12 @@ bool TicTacToe::check_board_full()
     return true;
 }
 
-void TicTacToe::clear_board() 
+void TicTacToe::clear_board()
 {
-    pegs.insert(pegs.begin(), 9, " ");
+    for (auto &peg : pegs) {
+        peg = " ";
+    }
 }
-
-
-string player;
-
-vector<string> pegs(9, " ");
 
 string TicTacToe::get_winner()
 {
@@ -111,7 +107,7 @@ void TicTacToe::set_winner()
     {
         winner = "O";
     }
-    
+
     else
     {
         winner = "X";
@@ -120,7 +116,7 @@ void TicTacToe::set_winner()
 
 std::istream& operator>>(std::istream& in, TicTacToe& game) {
     int position;
-    
+
     if(game.pegs.size() == 9){
         cout<<"Player "<<game.get_player()<<". Please input number between 1 to 9 to play: ";
 	    cin>>position;
@@ -148,7 +144,7 @@ std::ostream& operator<<(std::ostream& out, const TicTacToe& game) {
         out<<"|"<<game.pegs[0]<<"|"<<game.pegs[1]<<"|"<<game.pegs[2]<<"|"<<game.pegs[3]<<"|"<<"\n";
         out<<"|"<<game.pegs[4]<<"|"<<game.pegs[5]<<"|"<<game.pegs[6]<<"|"<<game.pegs[7]<<"|"<<"\n";
         out<<"|"<<game.pegs[8]<<"|"<<game.pegs[9]<<"|"<<game.pegs[10]<<"|"<<game.pegs[11]<<"|"<<"\n";
-        out<<"|"<<game.pegs[12]<<"|"<<game.pegs[13]<<"|"<<game.pegs[14]<<"|"<<game.pegs[15]<<"|"<<"\n";  
+        out<<"|"<<game.pegs[12]<<"|"<<game.pegs[13]<<"|"<<game.pegs[14]<<"|"<<game.pegs[15]<<"|"<<"\n";
     return out;
     }
 }
